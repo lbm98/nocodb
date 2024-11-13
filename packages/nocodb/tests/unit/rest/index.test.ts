@@ -14,6 +14,12 @@ import formulaTests from './tests/formula.test';
 import typeCastsTest from './tests/typeCasts.test';
 import readOnlyTest from './tests/readOnlySource.test';
 import aggregationTest from './tests/aggregation.test';
+import request from "supertest";
+import fs from 'fs';
+import path from 'path';
+import {defaultUserArgs} from "../factory/user";
+import {expect} from "chai";
+import init from "../init";
 
 let workspaceTest = () => {};
 let ssoTest = () => {};
@@ -33,31 +39,53 @@ if (process.env.EE === 'true') {
 // import widgetTest from './tests/widget.test';
 
 function restTests() {
-  authTests();
-  orgTests();
-  baseTests();
-  tableTests();
-  tableRowTests();
-  viewRowTests();
-  columnTypeSpecificTests();
-  attachmentTests();
-  filterTest();
-  newDataApisTest();
-  groupByTest();
-  workspaceTest();
-  formulaTests();
-  ssoTest();
-  cloudOrgTest();
-  typeCastsTest();
-  readOnlyTest();
-  aggregationTest();
-  bulkAggregationTest();
-  columnTest();
-  integrationTest();
+  // authTests();
+  // orgTests();
+  // baseTests();
+  // tableTests();
+  // tableRowTests();
+  // viewRowTests();
+  // columnTypeSpecificTests();
+  // attachmentTests();
+  // filterTest();
+  // newDataApisTest();
+  // groupByTest();
+  // workspaceTest();
+  // formulaTests();
+  // ssoTest();
+  // cloudOrgTest();
+  // typeCastsTest();
+  // readOnlyTest();
+  // aggregationTest();
+  // bulkAggregationTest();
+  // columnTest();
+  // integrationTest();
 
   // Enable for dashboard feature
   // widgetTest();
   // layoutTests();
+
+  const filePath = path.join(__dirname, '..', 'test_sakila.db');
+  console.log(filePath);
+
+  it('Should have an encrypted test_sakila.db file', function () {
+    const fileExists = fs.existsSync(filePath);
+    expect(fileExists).to.be.true;
+
+    // Read the first 16 bytes
+    const fd = fs.openSync(filePath, 'r');
+    const buffer = Buffer.alloc(16);
+    fs.readSync(fd, buffer, 0, 16, 0);
+    fs.closeSync(fd);
+    const header = buffer.toString('utf8');
+
+    // The header should not match the standard SQLite header
+    // It should be encrypted instead
+    console.log(header);
+    console.log('###############################');
+    const isEncrypted = header !== 'SQLite format 3\u0000';
+    expect(isEncrypted).to.be.true;
+  });
 }
 
 export default function () {

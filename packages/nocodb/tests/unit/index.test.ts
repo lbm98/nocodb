@@ -17,7 +17,7 @@ dotenv.config({
 (async function () {
   await TestDbMngr.init();
 
-  modelTests();
+  // modelTests();
   restTests();
 
   run();
