@@ -6541,7 +6541,6 @@ class BaseModelSqlv2 {
         `Record with ID ${id} has been inserted into Table ${this.model.title}`,
       ),
       details: details || null,
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
   }
@@ -6572,7 +6571,6 @@ class BaseModelSqlv2 {
         } been bulk updated in ${this.model.title}`,
       ),
       // details: JSON.stringify(data),
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
 
@@ -6604,7 +6602,6 @@ class BaseModelSqlv2 {
         } been bulk deleted in ${this.model.title}`,
       ),
       // details: JSON.stringify(data),
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
   }
@@ -6625,7 +6622,6 @@ class BaseModelSqlv2 {
         } been bulk inserted in ${this.model.title}`,
       ),
       // details: JSON.stringify(data),
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
   }
@@ -6681,7 +6677,6 @@ class BaseModelSqlv2 {
       op_sub_type: AuditOperationSubTypes.UPDATE,
       description: DOMPurify.sanitize(desc),
       details,
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
 
@@ -6714,7 +6709,6 @@ class BaseModelSqlv2 {
         `Record with ID ${id} has been deleted in Table ${this.model.title}`,
       ),
       // details: JSON.stringify(data),
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
     await this.handleHooks('after.delete', null, data, req);
@@ -7594,7 +7588,6 @@ class BaseModelSqlv2 {
       : <span class="black--text green lighten-4 px-2">${
         pkValue ?? null
       }</span>`),
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
   }
@@ -7861,7 +7854,6 @@ class BaseModelSqlv2 {
             ? Object.values(pkValue)[0]
             : pkValue ?? null
         }</span>`),
-      ip: req?.clientIp,
       user: req?.user?.email,
     });
   }

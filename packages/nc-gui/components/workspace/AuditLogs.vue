@@ -330,9 +330,6 @@ onKeyStroke('ArrowDown', onDown)
                   <th class="cell-description">
                     <div>{{ $t('labels.description') }}</div>
                   </th>
-                  <th class="cell-ip">
-                    <div>{{ $t('general.ipAddress') }}</div>
-                  </th>
                 </tr>
               </thead>
             </table>

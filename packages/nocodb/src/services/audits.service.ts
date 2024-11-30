@@ -39,7 +39,6 @@ export class AuditsService {
         DOMPurify.sanitize(`<span class="">${param.body.column_name}</span>
   : <span class="text-decoration-line-through red px-2 lighten-4 black--text">${param.body.prev_value}</span>
   <span class="black--text green lighten-4 px-2">${param.body.value}</span>`),
-      ip: (param as any).clientIp,
       user: (param as any).user?.email,
     });
 

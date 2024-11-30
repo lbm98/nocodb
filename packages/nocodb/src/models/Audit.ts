@@ -48,7 +48,6 @@ const opSubTypes = <const>[
 export default class Audit implements AuditType {
   id?: string;
   user?: string;
-  ip?: string;
   source_id?: string;
   fk_workspace_id?: string;
   base_id?: string;
@@ -88,7 +87,6 @@ export default class Audit implements AuditType {
     const insertAudit = async () => {
       const insertObj = extractProps(audit, [
         'user',
-        'ip',
         'source_id',
         'fk_workspace_id',
         'base_id',
